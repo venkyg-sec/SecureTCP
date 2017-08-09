@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+<!-- This template is modified by Seth Nielson for creating P-RFC's
+    (Playground-RFC's). -->
+<!-- This template is for creating an Internet Draft using xml2rfc,
+    which is available here: http://xml2rfc.ietf.org. -->
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
+<!-- One method to get references from the online citation libraries.
+    There has to be one entity for each item to be referenced. 
+    An alternate method (rfc include) is described in the references. -->
+
+<!ENTITY RFC2119 SYSTEM "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml">
+<!ENTITY RFC2360 SYSTEM "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.2360.xml">
+<!ENTITY RFC2629 SYSTEM "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.2629.xml">
+<!ENTITY RFC3552 SYSTEM "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.3552.xml">
+<!ENTITY RFC5226 SYSTEM "http://xml2rfc.tools.ietf.org/public/rfc/bibxml/reference.RFC.5226.xml">
+]>
+<?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
+<!-- used by XSLT processors -->
+<!-- For a complete list and description of processing instructions (PIs), 
+    please see http://xml2rfc.ietf.org/authoring/README.html. -->
+<!-- Below are generally applicable Processing Instructions (PIs) that most I-Ds might want to use.
+    (Here they are set differently than their defaults in xml2rfc v1.32) -->
+<?rfc strict="yes" ?>
+<!-- give errors regarding ID-nits and DTD validation -->
+<!-- control the table of contents (ToC) -->
+<?rfc toc="yes"?>
+<!-- generate a ToC -->
+<?rfc tocdepth="4"?>
+<!-- the number of levels of subsections in ToC. default: 3 -->
+<!-- control references -->
+<?rfc symrefs="yes"?>
+<!-- use symbolic references tags, i.e, [RFC2119] instead of [1] -->
+<?rfc sortrefs="yes" ?>
+<!-- sort the reference entries alphabetically -->
+<!-- control vertical white space 
+    (using these PIs as follows is recommended by the RFC Editor) -->
+<?rfc compact="yes" ?>
+<!-- do not start each main section on a new page -->
+<?rfc subcompact="no" ?>
+<!-- keep one blank line between list items -->
+<!-- end of list of popular I-D processing instructions -->
+
+
+
+
+<rfc category="std" docName="rfc1" number="1">
+ <!-- category values: std, bcp, info, exp, and historic
+    ipr values: trust200902, noModificationTrust200902, noDerivativesTrust200902,
+       or pre5378Trust200902, playgroundWinter201501
+    you can add the attributes updates="NNNN" and obsoletes="NNNN" 
+    they will automatically be output with "(if approved)" -->
+
+ <!-- ***** FRONT MATTER ***** -->
+
+ <front>
+   <!-- The abbreviated title is used in the page header - it is only necessary if the 
+        full title is longer than 39 characters -->
+
+   <title abbrev="SRP">Simple and Reliable Protocol</title>
+
+   <!-- add 'role="editor"' below for the editors if appropriate -->
+
+   <!-- Another author who claims to be an editor -->
+
+   <author fullname="Venkatesh Gopal" initials="V.G" role="editor"
+           surname="Gopal">
+     <organization>JHU Network Security Fall 2016</organization>
+
+     <address>
+       <postal>
+         <street>300 East University Parkway.</street>
+
+         <!-- Reorder these if your country does things differently -->
+
+         <city>Baltimore</city>
+
+         <region>MD</region>
+
+         <code>21218</code>
+
+         <country>USA</country>
+       </postal>
+
+       <phone>+1 443-825-1883</phone>
+
+       <email>vgopal3@jhu.edu</email>
+
+       <!-- uri and facsimile elements may also be added -->
+     </address>
+   </author>
+
+   <date year="2016" />
+
+   <!-- If the month and year are both specified and are the current ones, xml2rfc will fill 
+        in the current day for you. If only the current year is specified, xml2rfc will fill 
+	 in the current day and month for you. If the year is not the current one, it is 
+	 necessary to specify at least a month (xml2rfc assumes day="1" if not specified for the 
+	 purpose of calculating the expiry date).  With drafts it is normally sufficient to 
+	 specify just the year. -->
+
+   <!-- Meta-data Declarations -->
+
+   <area>General</area>
+
+   <workgroup>Playground Experiment Director</workgroup>
+
+   <!-- WG name at the upperleft corner of the doc,
+        IETF is fine for individual submissions.  
+	 If this element is not present, the default is "Network Working Group",
+        which is used by the RFC Editor as a nod to the history of the IETF. -->
+
+   <keyword>PRFC</keyword>
+
+   <!-- Keywords will be incorporated into HTML output
+        files in a meta tag but they have no effect on text or nroff
+        output. If you submit your draft to the RFC Editor, the
+        keywords will be used for the search engine. -->
+
+   <abstract>
+     <t>The Simple and Reliable protocol is designed to facilitate secure, connection oreiented, reliable transport layer mechanism.</t>
+   </abstract>
+ </front>
+
+ <middle>
+   <section title="Introduction">
+     <t>RFC (Request for Comments) are a publication of the Internet 
+     Engineering Task Force (IETF). RFC have many purposes including
+     the publication of standards, general information, and best
+     practices.</t>
+     
+     <t>This PRFC is designed to address the needs for a secure and reliable protocol at the Transport Layer of the Network Protocol stack. Host-to-Host delivery, reliable transmission. 	Connection oriented communication are some of the major considerations where emphasis has been placed while designing this protocol. The Simple and Reliable Protocol(SRP) can be 	used to ensure these criteria when the communication is intended to occur in a packet-switched internetwork of computing devices.
+	The SRP is reliable as it ensures that the sender of the data is acknowledged of the success delivery and receipt at the receiver end.  As opposed to the IP layer best 		effort service, SRP ensures an end-to-end reliable transmission delivering host-to-host reachability. SRP is designed to work on any underlying network.</t>
+     
+     
+     <section title="Requirements Language">
+      		<t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+       "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+       document are to be interpreted as described RFC2119</t>
+     </section>
+   </section>
+   
+   <section title="Interfaces">
+     <t>SRP is designed to communicate with the layers open and below it for successful packaging, receipt and transmission of data. There exist 2 interfaces in this aspect: The User 		Interface, IP interface
+	The User Interface exist between the SRP and the applications layer. This interface should be designed on systems to ensure communication between the applications and the 		service provider (SRP). Call such as OPEN, CLOSE, SEND, RECEIVE must be initiated at the application to instruct SRP about opening new connections, closing existing connections, 	sending new data, receive buffered data respectively.
+	The IP interface exist between the SRP and the IP layer for asynchronously managing the flow of data.  Since SRP is designed to function on any interconnected network, it is 		assumed that the operating system of the device is providing the functionality to ensure successful wrapping and unwrapping of headers added at each level in the protocol 		stack.  The lower level interface (IP layer) must initiate the necessary calls to Layer 4 to assure successful exchange.</t>
+   </section>
+    
+   <section title="Operations">
+     <section title="Data Transfer">
+       <t>SRP should ensure that it transmits a continuous stream of octets to the receiver.  These stream of octets are packaged into segments before being made into packets and 		thereby frames.  The SRP is responsible for indicating to the receiver the number of octets it can receive in a single segment and the number of segments that could be received 	in a given period of time.  These 2 decisions are dependent on the entities existing in the communication and are government by 2 fields Segment size and one Transfer scale in 	the SRP headers/messages.</t>
+     </section>
+     <section title="Reliability">
+       <t>  SRP assures that the sender is given a guarantee of the receipt of the data at the receiver SRP buffers. This is ensured by the use ACK (acknowledgement) flags to confirm 	the receipt of data and also as a request to send the next expected data.  Each segment is identified by a segment number which carriers a certain number of octets from the 		application. The increase of the segment number corresponds to the number of octets send. For example, if the segment number in the current stream is 100 and it carries 30 		octets from the application, the next segment number would be 130.</t>
+     </section>	     	
+     <section title="Multiplexing">
+       <t>  SRP must ensure that it is able to handle data from multiple applications at a single time. Each connection is identified by a combination of sockets, source port, 		destination port, Source IP address and Destination IP address.  A socket must be created to bind the IP address and the port at both the client and the server end. A 		pair of sockets thus identifies a connection. It must be the responsibility of the host operating system to bind the process to ports for establishing secure socket 			communication</t>
+     </section>
+     <section title="Flow Control">
+       <t> The receiver of the segments has the authority to indicate to the sender the number of new segment numbers it can receive in the next transmission. This is to ensure flow 		control on either side. By Flow control, the SRP must understand the transmission rate depending on the buffering and processing capabilities.</t>
+     </section>
+   </section>
+ 
+   <section title="Simple and Reliable Protocol Headers">
+     <t>Below is the structure of the SRP Protocol class that must be defined in the playground and its corresponding definitions below 
+class SRP_message(MessageDefinition):	
+	 <figure align="center" anchor="pre_header">
+       <preamble>PCC Packet Header</preamble>
+
+       <artwork align="left"><![CDATA[
+ BODY = [ ("source port",UINT2),
+("destination port",UINT2),
+("segment number",UINT4),
+("acknowledgement "number",UINT4),
+("HLENGTH",UINT1),
+("NE",BOOL1),
+("CA",BOOL1),
+("RESERVED",UINT1),
+("INITIATE",BOOL1),
+("ACK",BOOL1),
+("TERMINATE",BOOL1),
+("IMMEDIATE",BOOL1),
+("URGENT",BOOL1),
+("RESET",BOOL1),
+("One Transfer Scale",UINT2),
+("Checksum",UINT2),
+("Urgent Pointer",UINT2),
+("Options",UINT4),
+("Data",STRING)
+]
+
+           ]]></artwork>
+
+       <postamble></postamble>
+     </figure>
+	
+		</t>
+<t><list style="numbers">
+	<t>Source Port  This is a 16 bit field which indicates the source port of the sending machine.</t>
+	<t>Destination port This is a 16 bit field which indicates the destination port at the recipient side.</t>
+	<t>Segment Number  This is a 32 bit field which indicates the number of the current segment. Each segment would carry a certain number of octets which it had received from the application layer.  Once acknowledgement is received from the receiver side for the current packet, the next segment number to be sent is the previous segment number and  the number of octets sent in that segment.</t> 
+	<t>Acknowledgement Number  This is a 32 bit field which contributes significantly to the flow control mechanism of the SRP.  The acknowledgement number field is read if the ACK flag is set. This is introduced to provide an acknowledgement to the segments previously received.</t>
+	<t>HLEN  Header Length  This 4 bit field indicated the header length including the options. The range could vary from 20 bytes to 60 bytes. The length is to be read in terms of 32 bit word (4 bytes).  The header length is used to find the region of boundary between the header and the data portion.</t>
+	<t>Reserved  This field is reserved for future use</t>
+
+
+<t>Flags This field consists of six 1 bit flags</t>
+
+<t><list style="numbers">
+
+<t>INITIATE  This flag is set during the initiation of a connection.  Whenever a host receives a segment with this flag set, it increases the segment number by 1</t>
+<t>ACK This flag is set to acknowledge the receipt of a particular range of segments. When ACK flag is set, it indicates that the acknowledgment field would indicate the number of the next expected segment from the sender</t>
+<t>TERMINATE This flag is set during the termination of a connection. Whenever a host receives a segment with this flag set, it increases the segment number by 1</t>
+<t>IMMEDIATE  This flag is set to indicate to the receiver to process this particular segment immediately. This flag server 2 major functions
+1.	Sending applications indicates to SRP to immediately send this data out without waiting for additional data
+2.	To indicate to the receiving SRP to immediately send this data to the receiving applications.
+
+
+This concept should be mainly introduced due to the large buffers used by SRP to accommodate data before processing. Whenever the segments are larger than the Maximum segment size, buffers could be useful to store the data and send them together in one sequence. However, this could be ineffective if some small piece of data is to be send across the network as it has to wait for additional data in the buffer. Thus, the immediate flag could be used to signify the importance to quickly process it.</t> 
+</list></t>
+
+<t>URG  This flag is set to indicate to the receiver that certain data is urgent and thus to be prioritized for processing.  The urgent pointer field serves as an offset to indicate the segment number from the current segment number in the packet which is to be prioritized.</t>
+
+<t>RST  This flag is called the RESET flag and is used to reset a connection.  This serves purpose when a host shuts down due to a network error but keeps receiving data from the other end. The RST flag could be used to indicate to the sender to stop sending further segments
+One Transfer Scale  This field is used to indicate the amount of additional segment numbers the receiver can take in one transfer period. In other words, this can also be read as the number of segment numbers the communication entities can hold without sending an acknowledgement. This is discussed in detail while talking about how frequently ACK has to be sent in the section  Repeating only the Nth Segment Protocol below.</t>
+
+<t>Checksum  This is an 8 bit field used for the purpose of Error Handling.  Packets getting corrupted while on the path to the recipient due to congestion, collisions in the medium should be considered as corrupted or bad packets by the receiver. The checksum field in the SRP header is introduced to address that functionality.</t>
+<t>Urgent Pointer  This field is to be read when the urgent pointer is said. The urgent pointer field serves as an offset to indicate the segment number from the current segment number in the packet which is to be prioritized.</t>
+<t>Options  This field will be used to accommodate certain fields like the Maximum segment size. Maximum segment size will indicate how many octets can be accommodated in a segment.  Options would internally consist of three field. Type, Length and Option data. Type would indicate the kind of option used. For example, a value of 2 would indicate that the option data would carry the value for the maximum segment size.Padding is done to made the header a multiple of the 32 bit word.</t> 
+</list></t>
+
+</section>
+
+<section title="SRP Transition States">
+  <t>SRP protocol at any entitys end must transit through the below states indicating the current status depending on the segments received and sent.</t>
+<t>Figure
+<figure align="center">
+<preamble>PCC Packet Header</preamble>
+
+<artwork align="left"><![CDATA[
+         
+                      	       +---------------+
+                               |    CLOSED     |
+                               +----+-----+----+
+                                    |     |
+                            SENT INI|     |  RECV INI, SENT INI/ACK
+                                    v     v
+
+                               +---------------+
+                               |    LISTEN     |
+                               +----+-----+----+
+                                    |     |
+     +------------------+           |     |           +---------------+
+     | INITIATE SENT    | ^---------+     +---------^ | INITIATE RECV |
+     |                  <-----------------------------+               |
+     +----+--------+----+      RECV INI/ACK,SENT ACK  +---+-----------+
+          |        |                                      |
+          |        |                             SENT ACK |
+TERMINATE |        |           +---------------+          |
+          |        +---------> |   CONNECTED   | <--------+
+          |                    +----+-----+----+
+          v                         +     |
+                        SENT TERMINATE    |TERMINATE/ACK
+     +------------------+           +     |           +---------------+
+     |   TERMI|REQ      <-----------+     +---------> |   CLOSE REQ   |
+     +----+-------------+                             +------+--------+
+          |       +-----------------+                        |
+          | RECV ACK                |SENT TERMINATE/ACK      | CLOSE TER
+          v                         |                        v
+                                    |
+     +------------------+      +----v----------+      +---------------+
+     |   TERMI REQ A    |      |   CLOSE ACK   |      |  ACK RECV     |
+     +----+-------------+      +-------+-------+      +-------+-------+
+          |                            |                      |
+          |TEMINATE/ACK                v ACK                  v ACK
+          |
+          |                    +---------------+      +---------------+
+          +------------------> |      WAIT     +----> |    CLOSED     |
+                               +---------------+      +---------------+
+
+]]></artwork>
+
+       <postamble></postamble>
+     </figure></t>
+
+<t><list style="numbers">
+
+<t>LISTEN This state is to be maintained by the recipient (server) while listening for a connection on any SRP port and IP address</t>
+ 
+<t>INITIATE SENT: This state is to be maintained by the client (sender entity) after it has sent a segment with the initiate flag set indicating that it is waiting for an INITIATEACK for establishing the connection.</t>
+ 
+<t>INITIATE RECEIVED: This state is to be maintained by the receiver (server) indicating that it has processed the initial connection request messages and is waiting for an acknowledgement from the client to start the data communication</t>
+
+<t>CONNECTED  This state is to be maintained when the initial connection establishment phase is successful. This also means that the medium is ready for data communication.</t>
+
+<t>TERMINATE REQUEST  This state is to be maintained by both the entities if they are have sent a request to terminate the connection and are waiting for an acknowledgment from the other party.</t>
+
+<t>TERMINATE REQUEST ACKNOWLEDGED This state is to be maintained by both the entities if they have received the acknowledged for it request to terminate and is waiting for a connection close request from the other party.</t>
+
+<t>CLOSED REQUEST  This state is maintained to indicate that a close request has been sent by the remote user.</t>
+
+<t>CLOSED ACK  This state should be maintained to indicate that an acknowledgement has been sent to the recipient of it</t>
+
+<t>WAIT  This state should be maintained to indicate that the entity is waiting for a certain period to assure that its ACK has reached the destination.</t>
+
+<t>CLOSED  This state represents that there exists no connection at this given point of time</t>
+</list></t>
+</section>
+
+
+<section title="Connection Establishment">
+<t>The connection establishment is facilitated through a 3 way handshake between the parties involved in the connection. The sender initiates an SRP INITIATE indicating that the it wants to establish a connection. It includes an initial segment number in the segment number field.  If the receiver wants to continue the process of establishment, it sends a segment with the INITIATE and ACK flags set. The ACK flag is set to acknowledge the initial segment number sent by the sender. (ISN of sender plus 1) is included acknowledgment number of the receivers segment. The INITIATE flag is sent to include the ISN of the receiver.
+The entity who initiated the establishment receives this segment and acknowledges it by setting its ACK.  In its response, it includes (ISN of receiver plus 1). This is to certify the authenticity of the entities involved in the connection. 
+The Segment number is incremented in the first 2nd and 3rd packet as it is a general rule to increment it if a segment with INITIATE set is received.</t>
+</section>
+<section title="Connection Termination">
+<t>The connection termination is facilitated through the exchange of 4 messages.  The entity willing to terminate the connection sends a segment with the TERMINATE flag set. This must also mean that this entity has finished sending all data over the medium.
+The receiver acknowledges this request to terminate by sending a segment with the ACK flag set. If the receiver also has completed sending the data over the medium, it sends a segment with the TERMINATE flag set. The entity who initiated the termination request receives this segment and acknowledges it through a segment with the ACK flag set.
+In all of the above operation, the segment number must be incremented by 1 if the TERMINATE flag is set.</t>
+</section>
+
+<section title="Repeat only the Nth Segment Protocol">
+<t>The entities involved in the connection must agree upon the number of consecutive segment numbers to be acknowledged per an ACK segment.  This is facilitated by the Repeat only the Nth Segment Protocol. The entities would acknowledge only once per N segment sequences. Below is a visual representation of this protocol</t>
+
+<t>The entities set a timer for each segment sent. If the acknowledgement is not received with the time interval set, an acknowledgement should be sent only for the segment which ACK is not received. The entities must not re transmit all segments starting from the segment for which ACK was not received up to the segment which was sent last. This protocol should be a significant contributor to address factors of network latency and bandwidth.</t>
+</section> 
+
+<section title="Duplicate Acknowledgement">
+<t>Since acknowledgement is sent once per a given number of segments within a particular transfer scale, if a segment is lost within a transfer the scale, SRP must accommodate resources to re transmit the lost segment.  This must be performed by sending a segment with an ACK for the lost segment number. When this reaches the sender, it must recognize that this is a duplicate acknowledgement and thus re transmit it.</t>
+</section>
+
+<section title="Error Handling">
+<t>Segment numbers enable SRP to properly re-order the packets at the receiving end.  If there is a collision somewhere in the medium, there is a chance that the segment is corrupted. To handle these malfunctions, SRP has a field checksum which computes a hash value based on the all field of the SRP header, IP header and the data part.  
+The checksum is calculated by computing a 16-bit ones complement of the ones complement of all 16-bit fields of the all fields involved in the computation.  If there is a deficit for the completion of a 16-bit field, 0 is padded to it.
+The checksum field by itself is replaced by all 0 for the purpose of computation. This computation is also performed at the receiver end and if the checksum field differs it sends a segment with the ACK set indicating to re-transmit this segment. This ensures all packets are transmitted to the receiver.</t>
+</section>
+
+
+
+
+
+<section title="Options Congestion Handling">
+<t>In usual cases of congestion in the path between the two entities involved in the communication, the packets are dropped by intermediate routers.  This is identified by the receiving end through the unavailability of certain segment numbers. The receiver intimates the sender about the loss through a segment with the ACK flag set.  This causes a retransmission for the packets which were dropped by intermediate routers.
+To conserve the bandwidth, SRP must exploit the ECN (Explicit Congestion Notification) fields provided at the IP layer. The ECN field in the IP header is a 2bit field.   Below are the possibilities and corresponding indications provided by the values in this field at the IPlayer
+00  The device does not support ECN
+01  The device supports ECN
+10  The device supports ECN
+11  Congestion Encountered</t>
+
+
+<t>ECN indicates to the receiver and thereby the sender that the medium in their path is experiencing network congestion. The Receiver could thus intimate the sender to reduce the rate at which data is transferred.  The negotiation for this understanding should be established during the 3way handshake.</t>
+
+<t>During the initiation phase, if the ECN bits are set to either 01 or 10, the receiver understands this is an ECN capable device. If a router encounters a congestion and finds that the ECN bit are set to either 01 or 10, it sets the ECN bits to 11 indicating that a congestion has been encountered. 
+If the packets are not originating from an ECN enabled device, the router would just drop these packets.
+The receiver SRP protocol uses portion of the 2 least significant bits of the 6 bit reserved fields to as supplement for understand the ECN bits set by the IP header.</t>
+
+<t>The SRP would protocol would use the 2 least significant bits of the reserved field:
+NE  Indicating network congestion had been reported by intermediate routers
+CA Congestion Acknowledgment To indicate that it has understood the message and thus would reduce the one transfer scale to reduce the transmission rate.</t>
+
+
+<t>If a packet marked with CE is received at the receiver end, the receiver indicates this to the sender by setting the NE bit on the SRP header.  This process of setting the NE bit on the SRP header continues till a segment with CA set is received from the sender.
+The above feature contributes significantly to the conservation of bandwidth.</t> 
+</section>
+
+<section title="SRP device implementation details">
+
+<t>For maintenance and record of each connection a device is involved in, an SRP control buffer must be implemented by systems.  The SRP control buffer would store the below details</t>
+
+<t><list style="numbers">
+<t>LSSN  Last sent segment Numbers LSSN are stored in the SRP control buffer till an acknowledgement is received from the receiver</t>
+
+<t>NSN  Next Segment Number  NSN are stored in the SRP control buffer and ascertains initiation of transmission once an acknowledgement for the previously sent segment are received.</t>
+
+<t>LRA  Last received Acknowledgement LRA is stored in the SRP control buffer and confirms the validity of the next set of segment numbers through the  requirement
+	Next Segment Number is greater than LRA</t>
+
+<t>ISNs  Initial Segment Number of the Sender</t>
+
+<t>ISNr Initial Segment Number of the receiver </t>
+
+<t>CSTS  Current sending transfer scale</t>
+
+<t>CRTS Current receiving transfer scale</t>
+
+<t>MSS Maximum segment size</t>
+
+<t>CIC  INITIATE Counter </t>
+
+<t>TCIC  Total Connection INITIATE counter</t>
+</list></t>
+
+<t>CIC and TCIC must be introduced in the SRP control buffer to prevent against INITIATE flood attacks. CIC maintains the total number of INITIATE received from a particular connection. TCIC maintaines the total number INITIATE received from all available active connections.
+SRP should allocate a range of address for each connection to hold the above variables.
+TCIC must be implemented as a global variable common to all connections.
+It should be the responsibility of the HOST device to configure the maximum limits for CIC and TCIC.</t>
+</section>
+
+<section title="Initial Segment Number Generation">
+
+<t>The Initial segment numbers(ISN) selection should be done carefully to prevent SRP segment prediction attacks and session high jacking.  A man in the middle attack could reveal the source and destination port numbers, source and destination IP address, initial segment number. Using this an attacker would initiate a session to a server and the server could think of the attacker as a trusted client.  
+Thus, the already existing session would be terminated thinking that this is a new connection caused due to death of the previous session.  The ISN generation should be governed by the below formula </t>
+
+<t>ISN = T plus F (source IP, destination IP, source port, destination port, secret key)</t>
+
+<t>T is the timer in microseconds. Secret key would be held only with an entity and F is the function generating a random number based on the 4 tuple of the connection and the secret key</t>
+
+<t>The decision for implementation of ISN generation should be independent for every entity.  The entity could also include bootstrapping by availing his last system boot time to be used in the generation of the random number</t>
+
+<t>SRP implementation in devices must also select the way ephemeral ports are used for connections.  Use of less familiar ports for connections would potentially reduce the possibility of an off the path attack</t>
+</section>
+
+
+</middle>
+
+<!--  *****BACK MATTER ***** -->
+
+ <back>
+   <!-- References split into informative and normative -->
+
+   <!-- There are 2 ways to insert reference entries from the citation libraries:
+    1. define an ENTITY at the top, and use "ampersand character"RFC2629; here (as shown)
+    2. simply use a PI "less than character"?rfc include="reference.RFC.2119.xml"?> here
+       (for I-Ds: include="reference.I-D.narten-iana-considerations-rfc2434bis.xml")
+
+    Both are cited textually in the same manner: by using xref elements.
+    If you use the PI option, xml2rfc will, by default, try to find included files in the same
+    directory as the including file. You can also define the XML_LIBRARY environment variable
+    with a value containing a set of directories to search.  These can be either in the local
+    filing system or remote ones accessed by http (http://domain/dir/... ).-->
+
+
+
+   <!-- Change Log
+
+v00 2006-03-15  EBD   Initial version
+
+v01 2006-04-03  EBD   Moved PI location back to position 1 -
+                     v3.1 of XMLmind is better with them at this location.
+v02 2007-03-07  AH    removed extraneous nested_list attribute,
+                     other minor corrections
+v03 2007-03-09  EBD   Added comments on null IANA sections and fixed heading capitalization.
+                     Modified comments around figure to reflect non-implementation of
+                     figure indent control.  Put in reference using anchor="DOMINATION".
+                     Fixed up the date specification comments to reflect current truth.
+v04 2007-03-09 AH     Major changes: shortened discussion of PIs,
+                     added discussion of rfc include.
+v05 2007-03-10 EBD    Added preamble to C program example to tell about ABNF and alternative 
+                     images. Removed meta-characters from comments (causes problems).
+
+v06 2010-04-01 TT     Changed ipr attribute values to latest ones. Changed date to
+                     year only, to be consistent with the comments. Updated the 
+                     IANA guidelines reference from the I-D to the finished RFC.  
+   
+
+   
+    
+VENKATESH GOPAL:
+  Altered for PLAYGROUND AND PRFC's
+  2016-09-21 SJN PRFC 1
+  -->
+ </back>
+</rfc>
+		
+   
+
+ 
+
